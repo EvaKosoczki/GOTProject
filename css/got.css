@@ -1,14 +1,36 @@
-body {
+main {
   display: flex;
   flex-direction: row;
 }
 
 .container {
   background-image: url("/assets/site/mapblue.jpg");
-  height: 100vh;
   flex-grow: 3;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
 }
 
 .displaycontainer {
   flex-grow: 1;
+
+}
+
+.container__character {
+  width: 80px;
+  text-align: center;
+  vertical-align: top;
+
+}
+
+.span__character {
+  display: block;
+}
+
+.img__character {
+  width: 75px;
+  height: 75px;
 }

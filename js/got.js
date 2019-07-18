@@ -11,11 +11,6 @@ function getData(url, callbackFunc) {
   xhttp.send();
 }
 
-function successAjax(xhttp) {
-  userDatas = JSON.parse(xhttp.responseText);
-  isAlive(userDatas);
-}
-
 getData('/json/got.json', successAjax);
 
 // Live servert használd mindig!!!!!
@@ -38,4 +33,20 @@ function isAlive(data) {
     }
   }
   return stillAlive;
+}
+
+function showAlive(dataisAlive) {
+  let str = '';
+  for (let i = 0; i < dataisAlive.length; i += 1) {
+    str += `<div class="container__character">
+            <img class="img__character" src="${dataisAlive[i].portrait}" alt="${dataisAlive[i].name}pic">
+            <span class="span__character">${dataisAlive[i].name}</span></div>`;
+  }
+  document.querySelector('.container').innerHTML = str;
+}
+
+function successAjax(xhttp) {
+  userDatas = JSON.parse(xhttp.responseText);
+  const stillAlive = isAlive(userDatas);
+  showAlive(stillAlive);
 }
