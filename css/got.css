@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  flex-direction: row;
+}
+
+.container {
+  background-image: url("/assets/site/mapblue.jpg");
+  height: 100vh;
+  flex-grow: 4;
+}
+
+.displaycontainer {
+  flex-grow: 1;
+}
