@@ -6,7 +6,7 @@ body {
 .container {
   background-image: url("/assets/site/mapblue.jpg");
   height: 100vh;
-  flex-grow: 4;
+  flex-grow: 3;
 }
 
 .displaycontainer {
