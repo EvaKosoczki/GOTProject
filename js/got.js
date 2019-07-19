@@ -100,8 +100,7 @@ const gotObject = {
     for (let i = 0; i < stillAlive.length; i += 1) {
       if (nameInSpan == stillAlive[i].name) {
         str += `<img class="detailed-char__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
-                <img class="detailed-house__img" src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic">
-                <span class="detailed-name__span">${stillAlive[i].name}</span>
+                <div class="detailed-name__div"><span>${stillAlive[i].name}</span><img class="detailed-house__img" src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic"></div>
                 <span class="detailed-bio__span">${stillAlive[i].bio}</span>`
       }
     }
