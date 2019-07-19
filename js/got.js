@@ -43,17 +43,27 @@ const gotObject = {
     return flagPaths;
   },
   addFlagPaths(dataCreateFlagPaths) {
-    console.log(dataCreateFlagPaths);
     for (let i = 0; i < this.charDatas.length; i += 1) {
       if (this.charDatas[i].house) {
-        const house = this.charDatas[i].house
-        console.log(house);
-        dataCreateFlagPaths.find(function X(item) {
-          return item.indexOf(house)
-        });
-
+        const house = this.charDatas[i].house;
+        for (let j = 0; j < dataCreateFlagPaths.length; j += 1) {
+          if ((dataCreateFlagPaths[j].indexOf(house)) !== -1) {
+            this.charDatas[i].flagpath = dataCreateFlagPaths[j];
+          }
+        }
       }
     }
+    for (let i = 0; i < this.charDatas.length; i += 1) {
+      if (this.charDatas[i].organization) {
+        const organization = this.charDatas[i].organization;
+        for (let j = 0; j < dataCreateFlagPaths.length; j += 1) {
+          if ((dataCreateFlagPaths[j].indexOf(organization)) !== -1) {
+            this.charDatas[i].flagpath = dataCreateFlagPaths[j];
+          }
+        }
+      }
+    }
+    console.log(this.charDatas);
   },
   isAlive(data) {
     const stillAlive = [];
@@ -90,7 +100,7 @@ const gotObject = {
     for (let i = 0; i < stillAlive.length; i += 1) {
       if (nameInSpan == stillAlive[i].name) {
         str += `<img class="detailed-char__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
-                <img class="detailed-house__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
+                <img class="detailed-house__img" src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic">
                 <span class="detailed-name__span">${stillAlive[i].name}</span>
                 <span class="detailed-bio__span">${stillAlive[i].bio}</span>`
       }
