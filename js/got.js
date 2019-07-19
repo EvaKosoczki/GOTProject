@@ -16,11 +16,12 @@ const gotObject = {
   },
   callbackFunc(response) {
     this.charDatas = JSON.parse(response);
-    const stillAlive = this.isAlive(this.charDatas);
-    this.showAlive(stillAlive);
     this.createFlagPaths();
     const flagPaths = this.createFlagPaths();
     this.addFlagPaths(flagPaths);
+    const stillAlive = this.isAlive(this.charDatas);
+    this.sortStillAlive(stillAlive);
+    this.showAlive(stillAlive);
   },
   createFlagPaths() {
     const houseNOrg = [];
@@ -28,9 +29,9 @@ const gotObject = {
     for (let i = 0; i < this.charDatas.length; i += 1) {
       if (this.charDatas[i].house || this.charDatas[i].organization) {
         if (this.charDatas[i].house !== undefined) {
-          houseNOrg.push(this.charDatas[i].house)
+          houseNOrg.push(this.charDatas[i].house);
         } else {
-          houseNOrg.push(this.charDatas[i].organization)
+          houseNOrg.push(this.charDatas[i].organization);
         }
       }
     }
@@ -63,7 +64,6 @@ const gotObject = {
         }
       }
     }
-    console.log(this.charDatas);
   },
   isAlive(data) {
     const stillAlive = [];
@@ -84,6 +84,23 @@ const gotObject = {
     }
     return stillAlive;
   },
+  sortStillAlive(dataisAlive) {
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < dataisAlive.length - 1; i += 1) {
+        for (let j = i + 1; j < dataisAlive.length; j += 1) {
+          if (dataisAlive[i].name > dataisAlive[j].name) {
+            const temp = [dataisAlive[i], dataisAlive[j]];
+            dataisAlive[i] = temp[1];
+            dataisAlive[j] = temp[0];
+            swapped = true;
+          }
+        }
+      }
+    } while (swapped);
+    return dataisAlive;
+  },
   showAlive(dataisAlive) {
     let str = '';
     for (let i = 0; i < dataisAlive.length; i += 1) {
@@ -93,20 +110,28 @@ const gotObject = {
     }
     document.querySelector('.container').innerHTML = str;
   },
-  showDetailedInfo() {
+  writeInDisplayContainer(condition) {
     const stillAlive = this.isAlive(this.charDatas);
     let str = '';
-    let nameInSpan = event.target.nextElementSibling.innerHTML;
     for (let i = 0; i < stillAlive.length; i += 1) {
-      if (nameInSpan == stillAlive[i].name) {
+      if (condition === stillAlive[i].name) {
         str += `<img class="detailed-char__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
                 <div class="detailed-name__div"><span>${stillAlive[i].name}</span><img class="detailed-house__img" src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic"></div>
-                <span class="detailed-bio__span">${stillAlive[i].bio}</span>`
+                <span class="detailed-bio__span">${stillAlive[i].bio}</span>`;
       }
     }
     document.querySelector('.datacontainer').innerHTML = str;
   },
+  showDetailedInfo() {
+    const nameInSpan = event.target.nextElementSibling.innerHTML;
+    this.writeInDisplayContainer(nameInSpan);
+  },
+  searchOnclick() {
+    let searchInputValue = document.querySelector('.search__input').value;
+    document.querySelector('.search__input').value = '';
+    searchInputValue = searchInputValue.toLowerCase();
+    searchInputValue = searchInputValue.charAt(0).toUpperCase() + searchInputValue.slice(1);
+    this.writeInDisplayContainer(searchInputValue);
+  },
 };
 gotObject.init();
-// Live servert használd mindig!!!!!
-/* IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ! */

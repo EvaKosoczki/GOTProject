@@ -18,6 +18,7 @@ main {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-around;
+  padding: 10px;
 }
 
 .displaycontainer {
@@ -30,7 +31,7 @@ main {
 .container__character {
   width: 80px;
   text-align: center;
-  vertical-align: top;
+  padding: 10px;
 }
 
 .span__character {
