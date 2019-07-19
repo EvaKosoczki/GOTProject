@@ -1,6 +1,6 @@
 const gotObject = {
   init() {
-    this.userDatas = [];
+    this.charDatas = [];
     this.getData('/json/got.json');
   },
   getData(url) {
@@ -15,9 +15,45 @@ const gotObject = {
     request.send();
   },
   callbackFunc(response) {
-    this.userDatas = JSON.parse(response);
-    const stillAlive = this.isAlive(this.userDatas);
+    this.charDatas = JSON.parse(response);
+    const stillAlive = this.isAlive(this.charDatas);
     this.showAlive(stillAlive);
+    this.createFlagPaths();
+    const flagPaths = this.createFlagPaths();
+    this.addFlagPaths(flagPaths);
+  },
+  createFlagPaths() {
+    const houseNOrg = [];
+    const flagPaths = [];
+    for (let i = 0; i < this.charDatas.length; i += 1) {
+      if (this.charDatas[i].house || this.charDatas[i].organization) {
+        if (this.charDatas[i].house !== undefined) {
+          houseNOrg.push(this.charDatas[i].house)
+        } else {
+          houseNOrg.push(this.charDatas[i].organization)
+        }
+      }
+    }
+    const flagSet = new Set(houseNOrg);
+    const flagArray = Array.from(flagSet);
+
+    for (let i = 0; i < flagArray.length; i += 1) {
+      flagPaths.push(`assets/houses/${flagArray[i]}.png`);
+    }
+    return flagPaths;
+  },
+  addFlagPaths(dataCreateFlagPaths) {
+    console.log(dataCreateFlagPaths);
+    for (let i = 0; i < this.charDatas.length; i += 1) {
+      if (this.charDatas[i].house) {
+        const house = this.charDatas[i].house
+        console.log(house);
+        dataCreateFlagPaths.find(function X(item) {
+          return item.indexOf(house)
+        });
+
+      }
+    }
   },
   isAlive(data) {
     const stillAlive = [];
@@ -42,10 +78,24 @@ const gotObject = {
     let str = '';
     for (let i = 0; i < dataisAlive.length; i += 1) {
       str += `<div class="container__character">
-               <img onclick="showDetailedInfo()" class="img__character" src="${dataisAlive[i].portrait}" alt="${dataisAlive[i].name}pic">
+               <img onclick="gotObject.showDetailedInfo()" class="img__character" src="${dataisAlive[i].portrait}" alt="${dataisAlive[i].name}pic">
                <span class="span__character">${dataisAlive[i].name}</span></div>`;
     }
     document.querySelector('.container').innerHTML = str;
+  },
+  showDetailedInfo() {
+    const stillAlive = this.isAlive(this.charDatas);
+    let str = '';
+    let nameInSpan = event.target.nextElementSibling.innerHTML;
+    for (let i = 0; i < stillAlive.length; i += 1) {
+      if (nameInSpan == stillAlive[i].name) {
+        str += `<img class="detailed-char__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
+                <img class="detailed-house__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
+                <span class="detailed-name__span">${stillAlive[i].name}</span>
+                <span class="detailed-bio__span">${stillAlive[i].bio}</span>`
+      }
+    }
+    document.querySelector('.datacontainer').innerHTML = str;
   },
 };
 gotObject.init();
