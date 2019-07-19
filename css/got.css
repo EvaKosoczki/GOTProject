@@ -16,6 +16,7 @@ main {
 
 .displaycontainer {
   flex-grow: 1;
+  background-color: #a6a6a6;
 
 }
 
@@ -33,4 +34,11 @@ main {
 .img__character {
   width: 75px;
   height: 75px;
+}
+
+.sign__img {
+  width: 300px;
+  height: 60px;
+  padding: 30px;
+
 }
