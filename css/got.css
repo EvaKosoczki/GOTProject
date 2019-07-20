@@ -1,107 +1,162 @@
 /* @median belül a desktop méret*/
-/*
-@media only screen and (min-width:768px) {*/
-@font-face {
-  font-family: "celtic";
-  src: url('/fonts/AxelComicSans.ttf')
+
+@media only screen and (min-width:768px) {
+  @font-face {
+    font-family: "celtic";
+    src: url('/fonts/AxelComicSans.ttf')
+  }
+
+  main {
+    display: flex;
+    flex-direction: row;
+    font-family: celtic;
+    border: solid 2px #666;
+  }
+
+  .container {
+    background-image: url("/assets/site/mapblue.jpg");
+    flex-grow: 3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    padding: 10px;
+    border-right: solid 2px #666;
+  }
+
+  .displaycontainer {
+    flex-grow: 1;
+    background-color: #a6a6a6;
+    width: 350px;
+  }
+
+  .container__character {
+    width: 90px;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .span__character {
+    display: block;
+  }
+
+  .img__character {
+    width: 60px;
+    height: 60px;
+  }
+
+  .img__character:hover {
+    cursor: pointer;
+  }
+
+  .sign__img {
+    width: 240px;
+    height: 35px;
+    padding: 10px;
+    display: block;
+    margin: auto;
+  }
+
+  .detailed-char__img {
+    border: 2px solid #666666;
+    box-shadow: 5px 5px 3px #737373;
+    border-radius: 5px;
+    width: 270px;
+    height: 180px;
+    display: block;
+    box-sizing: border-box;
+    margin: auto;
+  }
+
+  .detailed-name__div {
+    font-size: 18px;
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .detailed-house__img {
+    text-align: right;
+  }
+
+  .datacontainer {
+    width: 350px;
+  }
+
+  .detailed-bio__span {
+    display: block;
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .searchcontainer {
+    display: block;
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .search__input {
+    border: solid 2px #666666;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 5px 15px;
+    background-color: #ccc;
+    margin: auto;
+  }
+
+  .search__imgbutton {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    left: 0;
+    top: 10px;
+  }
+
+  .search__imgbutton:hover {
+    cursor: pointer;
+  }
 }
 
-main {
-  display: flex;
-  flex-direction: row;
-  font-family: celtic;
-  border: solid 2px #666;
-}
-
+/* Mobilra vonatkozó CSS */
 .container {
   background-image: url("/assets/site/mapblue.jpg");
-  flex-grow: 3;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
   padding: 10px;
   border-right: solid 2px #666;
 }
 
-.displaycontainer {
-  flex-grow: 1;
-  background-color: #a6a6a6;
-  display: flex;
-  flex-direction: column;
-  width: 350px;
-  justify-content: flex-start;
-}
-
-.container__character {
-  width: 90px;
-  text-align: center;
-  padding: 10px;
-}
-
-.span__character {
-  display: block;
-}
-
-.img__character {
-  width: 60px;
-  height: 60px;
-}
-
-.img__character:hover {
-  cursor: pointer;
-}
-
+.displaycontainer,
 .sign__img {
-  width: 220px;
-  height: 35px;
-  padding: 20px;
-  display: block;
-  margin: auto;
+  max-width: 100%;
+}
+
+.detailed-name__div {
+  text-align: center;
+}
+
+.displaycontainer {
+  background-color: #a6a6a6;
 }
 
 .detailed-char__img {
   border: 2px solid #666666;
   box-shadow: 5px 5px 3px #737373;
   border-radius: 5px;
-  width: 270px;
-  height: 180px;
   display: block;
-  margin: 15px;
   box-sizing: border-box;
   margin: auto;
+  
 }
 
-.detailed-name__div {
-  font-size: 18px;
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
-  justify-content: space-around;
+.search__imgbutton {
+  width: 10%;
+  height: 10%;
 }
 
-.detailed-house__img {
-  text-align: right;
-}
-
-.datacontainer {
-  width: 350px;
-}
-
-.detailed-bio__span {
-  display: block;
-  padding: 15px;
-  font-size: 16px;
-}
-
-.searchcontainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding: 15px;
-  position: absolute;
-  bottom: 0;
+.search__imgbutton:hover {
+  cursor: pointer;
 }
 
 .search__input {
@@ -112,72 +167,10 @@ main {
   background-color: #ccc;
 }
 
-.search__imgbutton {
-  width: 50px;
-  height: 50px;
-}
-
-.search__imgbutton:hover {
+.img__character:hover {
   cursor: pointer;
-}
-
-
-/*
-/*innen mobil mód 
-.signcontainer {
-  width: 100%;
-  text-align: center
-}
-
-.sign__img {
-  width: 80%;
-  padding: 20px;
-  text-align: center
-}
-
-.datacontainer {
-  width: 100%;
-}
-
-.detailed-name__div {
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.detailed-char__img {
-  border: 2px solid #666666;
-  box-shadow: 5px 5px 3px #737373;
-  border-radius: 5px;
-  width: 240px;
-  height: 120px;
-  display: block;
-  margin: auto;
-  box-sizing: border-box;
-}
-
-.container__character {
-  text-align: center;
-  padding: 10px;
 }
 
 .span__character {
   display: block;
 }
-
-.img__character {
-  width: 60px;
-  height: 60px;
-}
-
-.container {
-  background-image: url("/assets/site/mapblue.jpg");
-  flex-grow: 3;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
-  padding: 10px;
-} */
