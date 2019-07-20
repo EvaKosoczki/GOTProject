@@ -16,12 +16,21 @@ const gotObject = {
   },
   callbackFunc(response) {
     this.charDatas = JSON.parse(response);
+    this.killNedStark();
     this.createFlagPaths();
     const flagPaths = this.createFlagPaths();
     this.addFlagPaths(flagPaths);
     const stillAlive = this.isAlive(this.charDatas);
     this.sortStillAlive(stillAlive);
     this.showAlive(stillAlive);
+  },
+  killNedStark() {
+    for (let i = 0; i < this.charDatas.length; i += 1) {
+      if (this.charDatas[i].name === 'Ned Stark') {
+        this.charDatas.splice(i, 1);
+      }
+    }
+    return this.charDatas;
   },
   createFlagPaths() {
     const houseNOrg = [];
@@ -129,8 +138,14 @@ const gotObject = {
   searchOnclick() {
     let searchInputValue = document.querySelector('.search__input').value;
     document.querySelector('.search__input').value = '';
-    searchInputValue = searchInputValue.toLowerCase();
-    searchInputValue = searchInputValue.charAt(0).toUpperCase() + searchInputValue.slice(1);
+    const stringArray = searchInputValue.split(' ');
+    const stringArrayMod = [];
+    for (let i = 0; i < stringArray.length; i += 1) {
+      let x = stringArray[i].toLowerCase();
+      x = x.charAt(0).toUpperCase() + x.slice(1);
+      stringArrayMod.push(x);
+    }
+    searchInputValue = stringArrayMod.join().replace(',', ' ');
     this.writeInDisplayContainer(searchInputValue);
   },
 };
