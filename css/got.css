@@ -1,18 +1,22 @@
-@media screen and(min-width:768px) {
-  .col {
-    width: 33.33%
-  }
+/* @median belül a desktop méret*/
+/*
+@media only screen and (min-width:768px) {*/
+@font-face {
+  font-family: "celtic";
+  src: url('/fonts/CyberCaligraphic')
 }
+
+
 
 main {
   display: flex;
   flex-direction: row;
+  font-family: celtic;
 }
 
 .container {
   background-image: url("/assets/site/mapblue.jpg");
   flex-grow: 3;
-  height: 100vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -26,10 +30,11 @@ main {
   background-color: #a6a6a6;
   display: flex;
   flex-direction: column;
+  width: 350px;
 }
 
 .container__character {
-  width: 80px;
+  width: 100px;
   text-align: center;
   padding: 10px;
 }
@@ -39,20 +44,17 @@ main {
 }
 
 .img__character {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
 }
 
-.signcontainer {
-  width: 300px;
-  text-align: center
-}
 
 .sign__img {
   width: 220px;
   height: 35px;
   padding: 20px;
-  text-align: center
+  display: block;
+  margin: auto;
 }
 
 .detailed-char__img {
@@ -62,11 +64,13 @@ main {
   width: 270px;
   height: 180px;
   display: block;
-  margin: auto;
+  margin: 15px;
   box-sizing: border-box;
+  margin: auto;
 }
 
 .detailed-name__div {
+  font-size: 18px;
   display: flex;
   padding: 10px;
   flex-direction: row;
@@ -78,10 +82,80 @@ main {
 }
 
 .datacontainer {
-  width: 300px;
+  width: 350px;
 }
 
 .detailed-bio__span {
   display: block;
   padding: 15px;
+  font-size: 16px;
 }
+
+.search__input {
+  border: solid 2px #666666;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 5px 15px;
+  background-color: #ccc;
+}
+
+
+/*
+/*innen mobil mód 
+.signcontainer {
+  width: 100%;
+  text-align: center
+}
+
+.sign__img {
+  width: 80%;
+  padding: 20px;
+  text-align: center
+}
+
+.datacontainer {
+  width: 100%;
+}
+
+.detailed-name__div {
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.detailed-char__img {
+  border: 2px solid #666666;
+  box-shadow: 5px 5px 3px #737373;
+  border-radius: 5px;
+  width: 240px;
+  height: 120px;
+  display: block;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.container__character {
+  text-align: center;
+  padding: 10px;
+}
+
+.span__character {
+  display: block;
+}
+
+.img__character {
+  width: 60px;
+  height: 60px;
+}
+
+.container {
+  background-image: url("/assets/site/mapblue.jpg");
+  flex-grow: 3;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  padding: 10px;
+} */
