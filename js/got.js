@@ -125,11 +125,16 @@ const gotObject = {
     for (let i = 0; i < stillAlive.length; i += 1) {
       if (condition === stillAlive[i].name) {
         str += `<img class="detailed-char__img" src="${stillAlive[i].picture}" alt="${stillAlive[i].name}_pic">
-                <div class="detailed-name__div"><span>${stillAlive[i].name}</span><img class="detailed-house__img" src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic"></div>
-                <span class="detailed-bio__span">${stillAlive[i].bio}</span>`;
+                <div class="detailed-name__div"><span>${stillAlive[i].name}</span>`;
+        if (stillAlive[i].flagpath !== undefined) {
+          str += `<img class="detailed-house__img" src="${stillAlive[i].flagpath}"}>`;
+        }
+        str += `</div><span class="detailed-bio__span">${stillAlive[i].bio}</span>`;
       }
     }
     document.querySelector('.datacontainer').innerHTML = str;
+
+    /* src="${stillAlive[i].flagpath}" alt="${stillAlive[i].name}_fpic" */
   },
   showDetailedInfo() {
     const nameInSpan = event.target.nextElementSibling.innerHTML;
